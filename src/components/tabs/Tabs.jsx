@@ -7,7 +7,7 @@ function Tabs({ children }) {
   };
 
   const tabButtons = (
-    <div style={{ display: "flex", padding: "1rem" }}>
+    <div style={{ display: "flex" }}>
       {React.Children.map(children, (child, index) => {
         return <TabButton title={child.props.title} index={index} disabled={child.props.disabled} onClick={onClick} />;
       })}
@@ -19,11 +19,12 @@ function Tabs({ children }) {
   });
   return [tabButtons, tabContents];
 }
+Tabs.displayName ='TabItemBySukumarVaddi'
 
 function TabButton({ title, index, onClick, disabled }) {
   return (
     <div
-      style={{ padding: "1rem", cursor: "pointer" }}
+      style={{ padding: "1rem", cursor: "pointer", width:'100px', height:'50px', border:'1px solid gray' }}
       onClick={() => {
         if (!disabled) {
           onClick(index);
@@ -34,9 +35,11 @@ function TabButton({ title, index, onClick, disabled }) {
     </div>
   );
 }
+TabButton.displayName=''
 
 export function TabItem({ children, index, selected }) {
-  return index === selected ? <div> {children}</div> : null;
+  return index === selected ? <div style={{width:'100%', border:"1px solid gray"}}> {children}</div> : null;
 }
+TabItem.displayName='TabItemBySukumarVaddi'
 
 export default Tabs;
