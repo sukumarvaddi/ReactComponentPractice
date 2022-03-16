@@ -19,7 +19,6 @@ function Tabs({ children }) {
   });
   return [tabButtons, tabContents];
 }
-Tabs.displayName ='TabItemBySukumarVaddi'
 
 function TabButton({ title, index, onClick, disabled }) {
   return (
@@ -40,6 +39,5 @@ TabButton.displayName=''
 export function TabItem({ children, index, selected }) {
   return index === selected ? <div style={{width:'100%', border:"1px solid gray"}}> {children}</div> : null;
 }
-TabItem.displayName='TabItemBySukumarVaddi'
 
 export default Tabs;
