@@ -9,7 +9,7 @@ function App() {
         <TabContent  color='papayawhip'> This is Papaya whip tab</TabContent>
       </TabItem>
       <TabItem title="Tab2"> This is Item 2</TabItem>
-      <TabItem title="Tab3" >
+      <TabItem title="Tab3"  >
           <Tabs>
             <TabItem title='nestedTab'><TabContent color='azure'> This is nested Tab </TabContent> </TabItem>
        </Tabs>
