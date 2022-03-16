@@ -9,7 +9,7 @@ function Tabs({ children }) {
   const tabButtons = (
     <div style={{ display: "flex" }}>
       {React.Children.map(children, (child, index) => {
-        return <TabButton title={child.props.title} index={index} disabled={child.props.disabled} onClick={onClick} />;
+        return <TabButton title={child.props.title} index={index} disabled={child.props.disabled} onClick={onClick} selected={ selected}/>;
       })}
     </div>
   );
@@ -20,10 +20,13 @@ function Tabs({ children }) {
   return [tabButtons, tabContents];
 }
 
-function TabButton({ title, index, onClick, disabled }) {
+function TabButton({ title, index, onClick, disabled, selected }) {
+
+  const colorObject = selected === index ? {backgroundColor:'red'}:null
+
   return (
     <div
-      style={{ padding: "1rem", cursor: "pointer", width:'100px', height:'50px', border:'1px solid gray' }}
+      style={{ padding: "1rem", cursor: "pointer", width:'100px', height:'50px', border:'1px solid gray', ...colorObject }}
       onClick={() => {
         if (!disabled) {
           onClick(index);
