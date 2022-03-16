@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import Tabs, { TabItem } from "./components/tabs/Tabs";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Tabs>
+      <TabItem title="Papaya Whip">
+        <TabContent />
+      </TabItem>
+      <TabItem title="Tab2"> This is Item 2</TabItem>
+      <TabItem title="Tab3" disabled>
+        This is item 3
+      </TabItem>
+    </Tabs>
   );
+}
+
+function TabContent() {
+  return <div style={{ width: "200px", height: "200px", backgroundColor: "papayawhip" }}> This is custom Component</div>;
 }
 
 export default App;
