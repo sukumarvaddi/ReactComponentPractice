@@ -1,53 +1,62 @@
-import React from 'react';
-const defaultPageSize = 5
+import React from "react";
+const defaultPageSize = 5;
 
 function usePagination() {
   const [data, setData] = React.useState([]);
-  const [pageSize, setPageSize] = React.useState(defaultPageSize)
+  const [pageSize, setPageSize] = React.useState(defaultPageSize);
   const [selectedPage, setSelectedPage] = React.useState(1);
   const updatePageSize = (pageSize) => {
     setPageSize(pageSize);
-    setDataForPage(data.slice(0, pageSize))
+    setDataForPage(data.slice(0, pageSize));
     setSelectedPage(1);
-  }
-  const [dataForPage, setDataForPage ] = React.useState([])
-  React.useEffect(() => { 
-    fetch('https://fakestoreapi.com/products')
-      .then(res => res.json())
-      .then(json => {
-        setData(json) 
-        setDataForPage(json.slice(0, defaultPageSize)); 
+  };
+  const [dataForPage, setDataForPage] = React.useState([]);
+  React.useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((json) => {
+        setData(json);
+        setDataForPage(json.slice(0, defaultPageSize));
       });
-  }, [])
- 
+  }, []);
+
   function updateDataForPage(pageNumber = 1) {
-    const startIndex = (pageNumber * pageSize) - pageSize;
-    const endIndex = (pageNumber * pageSize) < data.length ? pageNumber * pageSize : data.length;
-    setDataForPage(data.slice(startIndex, endIndex))
+    const startIndex = pageNumber * pageSize - pageSize;
+    const endIndex = pageNumber * pageSize < data.length ? pageNumber * pageSize : data.length;
+    setDataForPage(data.slice(startIndex, endIndex));
     setSelectedPage(pageNumber);
   }
 
   function getPropsForPageButton(props) {
-    const {pageNumber, id} = props
+    const { pageNumber, id } = props;
     return {
-      onClick: () => { updateDataForPage(props.pageNumber) },
+      onClick: () => {
+        updateDataForPage(props.pageNumber);
+      },
       key: id,
       value: pageNumber,
       disabled: pageNumber === selectedPage,
-      'aria-label': `Page No ${pageNumber}`,
-      'title': pageNumber,
+      "aria-label": `Page No ${pageNumber}`,
+      title: pageNumber,
       id
-    }
+    };
   }
 
   function getPropsForPageSizeInput(props) {
     return {
-      value: pageSize, 
-      onInput: (event) => { updatePageSize(Number(event.target.value)) },
+      value: pageSize,
+      onInput: (event) => {
+        updatePageSize(Number(event.target.value));
+      },
       ...props
-    }
+    };
   }
 
-    return {getPropsForPageSizeInput, dataForPage,  noOfPages: data.length / pageSize, getPropsForPageButton }
+  return {
+    getPropsForPageSizeInput,
+    dataForPage,
+    noOfPages: data.length / pageSize,
+    getPropsForPageButton
+  };
 }
-export default usePagination
+export default usePagination;
