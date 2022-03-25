@@ -43,10 +43,7 @@ function usePagination() {
   function getPropsForPageButton(props) {
     const { pageNumber, id,onClick: updateButtonLog } = props;
     return {
-      onClick: callAll([updateButtonLog, updateDataForPage])(pageNumber)
-        // updateButtonLog();
-        // updateDataForPage(pageNumber);
-      ,
+      onClick: callAll([updateButtonLog, updateDataForPage])(pageNumber),
       key: id,
       value: pageNumber,
       disabled: pageNumber === selectedPage,
