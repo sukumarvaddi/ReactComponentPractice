@@ -17,7 +17,10 @@ function App() {
 					type="button"
 					{...getPropsForPageButton({
 						pageNumber: i + 1,
-						id: `Page${i + 1}`,
+            id: `Page${i + 1}`,
+            onClick: () => {
+              console.log('Button Clicked');
+            }
 					})}
 				/>
 			);

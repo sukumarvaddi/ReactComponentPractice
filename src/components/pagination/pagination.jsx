@@ -1,6 +1,17 @@
 import React from "react";
 const defaultPageSize = 5;
 
+function callAll(fns) {
+  return (args) => {
+   return ()=> fns.forEach(fn => { 
+      if (fn) {
+        fn(args)
+      }
+    })
+  }
+}
+
+
 function usePagination() {
   const [data, setData] = React.useState([]);
   const [pageSize, setPageSize] = React.useState(defaultPageSize);
@@ -27,12 +38,15 @@ function usePagination() {
     setSelectedPage(pageNumber);
   }
 
+
+
   function getPropsForPageButton(props) {
-    const { pageNumber, id } = props;
+    const { pageNumber, id,onClick: updateButtonLog } = props;
     return {
-      onClick: () => {
-        updateDataForPage(props.pageNumber);
-      },
+      onClick: callAll([updateButtonLog, updateDataForPage])(pageNumber)
+        // updateButtonLog();
+        // updateDataForPage(pageNumber);
+      ,
       key: id,
       value: pageNumber,
       disabled: pageNumber === selectedPage,
