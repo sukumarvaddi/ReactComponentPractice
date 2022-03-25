@@ -37,9 +37,7 @@ function usePagination() {
     setDataForPage(data.slice(startIndex, endIndex));
     setSelectedPage(pageNumber);
   }
-
-
-
+  
   function getPropsForPageButton(props) {
     const { pageNumber, id,onClick: updateButtonLog } = props;
     return {

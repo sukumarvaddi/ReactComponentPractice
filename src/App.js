@@ -19,7 +19,7 @@ function App() {
 						pageNumber: i + 1,
             id: `Page${i + 1}`,
             onClick: () => {
-              console.log('Button Clicked');
+              console.log(`Clicked Page:${i+1}`);
             }
 					})}
 				/>
@@ -80,7 +80,7 @@ function App() {
 					<tbody>
 						{dataForPage.map((data) => {
 							return (
-								<tr key={data.id}>
+								<tr key={data.id} style={{height:'150px'}}>
 									<td style={{ border: "1px solid black", padding: "1rem" }}>
 										{data.id}
 									</td>
@@ -93,10 +93,10 @@ function App() {
 									<td style={{ border: "1px solid black", padding: "1rem" }}>
 										{data.price}
 									</td>
-									<td style={{ border: "1px solid black", padding: "1rem" }}>
+									<td style={{ border: "1px solid black", padding: "1rem",  width: '150px' }}>
 										<img
 											src={data.image}
-											width="150px"
+											height="150px"
 											alt={data.description}
 										/>
 									</td>
